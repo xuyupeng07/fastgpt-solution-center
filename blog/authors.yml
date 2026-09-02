@@ -10,6 +10,17 @@ yangshun:
     github: yangshun
     newsletter: https://www.greatfrontend.com
 
+joelmarcey:
+  name: Joel Marcey
+  title: Co-creator of Docusaurus 1
+  url: https://github.com/JoelMarcey
+  image_url: https://github.com/JoelMarcey.png
+  socials:
+    x: sebastienlorber
+    linkedin: sebastienlorber
+    github: slorber
+    newsletter: https://thisweekinreact.com
+
 slorber:
   name: Sébastien Lorber
   title: Docusaurus maintainer
