@@ -1,24 +1,24 @@
 facebook:
   label: Facebook
   permalink: /facebook
-  description: Facebook tag description
+  description: Facebook 标签说明
 
 hello:
   label: Hello
   permalink: /hello
-  description: Hello tag description
+  description: Hello 标签说明
 
 docusaurus:
   label: Docusaurus
   permalink: /docusaurus
-  description: Docusaurus tag description
+  description: Docusaurus 标签说明
 
 hola:
   label: Hola
   permalink: /hola
-  description: Hola tag description
+  description: Hola 标签说明
 
 greetings:
-  label: Greetings
+  label: 问候
   permalink: /greetings
-  description: Greetings tag description
+  description: 问候类标签说明
