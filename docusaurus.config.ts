@@ -48,6 +48,9 @@ const config: Config = {
         },
         blog: {
           showReadingTime: true,
+          // 博客左侧“最新文章”标题的默认(zh-Hans)文案;
+          // en/fr 通过各自 i18n/.../docusaurus-plugin-content-blog/options.json 覆盖.
+          blogSidebarTitle: '最新文章',
           feedOptions: {
             type: ['rss', 'atom'],
             xslt: true,
@@ -83,15 +86,17 @@ const config: Config = {
       items: [
         {
           type: 'localeDropdown',
+          position: 'right',
         },
         {
           type: 'docSidebar',
           sidebarId: 'tutorialSidebar',
           position: 'left',
-          label: 'Tutorial',
+          label: '教程',
         },
-        {to: '/blog', label: 'Blog', position: 'left'},
+        {to: '/blog', label: '博客', position: 'left'},
         {
+          type: 'custom-github',
           href: 'https://github.com/xuyupeng07/fastgpt-solution-center',
           label: 'GitHub',
           position: 'right',
@@ -102,16 +107,16 @@ const config: Config = {
       style: 'dark',
       links: [
         {
-          title: 'Docs',
+          title: '文档',
           items: [
             {
-              label: 'Tutorial',
+              label: '教程',
               to: '/docs/intro',
             },
           ],
         },
         {
-          title: 'Community',
+          title: '社区',
           items: [
             {
               label: 'Stack Overflow',
@@ -128,10 +133,10 @@ const config: Config = {
           ],
         },
         {
-          title: 'More',
+          title: '更多',
           items: [
             {
-              label: 'Blog',
+              label: '博客',
               to: '/blog',
             },
             {

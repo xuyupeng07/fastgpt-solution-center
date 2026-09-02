@@ -7,13 +7,13 @@
     "message": "FastGPT Logo",
     "description": "The alt text of navbar logo"
   },
-  "item.label.Tutorial": {
+  "item.label.教程": {
     "message": "Tutorial",
-    "description": "Navbar item with label Tutorial"
+    "description": "Navbar item with label 教程 (docs)"
   },
-  "item.label.Blog": {
+  "item.label.博客": {
     "message": "Blog",
-    "description": "Navbar item with label Blog"
+    "description": "Navbar item with label 博客"
   },
   "item.label.GitHub": {
     "message": "GitHub",

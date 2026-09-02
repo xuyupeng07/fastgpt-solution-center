@@ -28,3 +28,14 @@
   --ifm-color-primary-lightest: #dce6ff;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
+
+/* GitHub logo navbar item: 图标 + 文字,图标在文字左侧,随明暗主题取色 */
+.github-logo-navbar-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+.github-logo-navbar-item svg {
+  display: block;
+  flex-shrink: 0;
+}
