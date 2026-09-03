@@ -2,17 +2,5 @@
   "version.label": {
     "message": "Prochaine",
     "description": "The label for version current"
-  },
-  "sidebar.tutorialSidebar.category.教程 - 基础": {
-    "message": "Tutoriel - Bases",
-    "description": "The label for category '教程 - 基础' in sidebar 'tutorialSidebar'"
-  },
-  "sidebar.tutorialSidebar.category.教程 - 基础.link.generated-index.description": {
-    "message": "Apprenez en 5 minutes les concepts Docusaurus les plus importants.",
-    "description": "The generated-index page description for category '教程 - 基础' in sidebar 'tutorialSidebar'"
-  },
-  "sidebar.tutorialSidebar.category.教程 - 进阶": {
-    "message": "Tutoriel - Pour aller plus loin",
-    "description": "The label for category '教程 - 进阶' in sidebar 'tutorialSidebar'"
   }
 }
