@@ -1,36 +1,7 @@
-yangshun:
-  name: Yangshun Tay
-  title: 前 Meta 职员工程师,GreatFrontEnd 联合创始人
-  url: https://linkedin.com/in/yangshun
-  image_url: https://github.com/yangshun.png
-  page: true
+xuyupeng:
+  name: XuYuPeng
+  title: FastGPT 解决方案工程师
+  image_url: /img/XuYuPeng.png
   socials:
-    x: yangshunz
-    linkedin: yangshun
-    github: yangshun
-    newsletter: https://www.greatfrontend.com
-
-joelmarcey:
-  name: Joel Marcey
-  title: Docusaurus 1 的联合创始人
-  url: https://github.com/JoelMarcey
-  image_url: https://github.com/JoelMarcey.png
-  socials:
-    x: sebastienlorber
-    linkedin: sebastienlorber
-    github: slorber
-    newsletter: https://thisweekinreact.com
-
-slorber:
-  name: Sébastien Lorber
-  title: Docusaurus 维护者
-  url: https://sebastienlorber.com
-  image_url: https://github.com/slorber.png
-  page:
-    # 自定义作者页(位于 /blog/authors/<permalink>)的 URL
-    permalink: '/all-sebastien-lorber-articles'
-  socials:
-    x: sebastienlorber
-    linkedin: sebastienlorber
-    github: slorber
-    newsletter: https://thisweekinreact.com
+    x: yupengxu33623
+    github: xuyupeng07

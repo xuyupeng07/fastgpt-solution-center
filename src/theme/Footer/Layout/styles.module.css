@@ -1,28 +1,342 @@
-.illustration {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 1076px;
-  max-width: 100%;
-  height: 378px;
+/**
+ * 复刻 FastGPT 官网(fastgpt-home)页脚,像素级对齐其 Framer 布局:
+ *  - 字体: Inter / PingFang SC,字号 16/18/15,行高 22/28/20,字距 -0.01em(品牌名 0.15px)
+ *  - 颜色: 标题 #020617、链接 #475569(hover 黑)、副标题/版权 #292f38、分隔线 #f1f5f9
+ *  - 布局: 品牌区 flex:1 居左,四列(150/220px) + 二维码居右,columnGap 10 / rowGap 24
+ * 暗色模式通过 [data-theme='dark'] 适配,背景沿用站点 #030712。
+ */
+
+.footerRoot {
+  --ifm-footer-padding-vertical: 2rem; /* py-8 */
+  --ifm-footer-padding-horizontal: 0;
+  --ft-default: #020617; /* 邮箱 / 二维码标签等继承文本色 */
+  --ft-heading: #020617; /* 列标题 */
+  --ft-link: #475569; /* 链接 (ink-sub) */
+  --ft-link-hover: #000000;
+  --ft-meta: #292f38; /* 副标题 / 版权 (rgb 41,47,56) */
+  --ft-divider: #f1f5f9; /* 分隔线 / 二维码描边 */
+  color: var(--ft-default);
+  font-family: 'Inter', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+}
+
+[data-theme='dark'] .footerRoot {
+  --ft-default: #f8fafc;
+  --ft-heading: #f8fafc;
+  --ft-link: #94a3b8;
+  --ft-link-hover: #ffffff;
+  --ft-meta: #cbd5e1;
+  --ft-divider: #1f2937;
+}
+
+@media (min-width: 768px) {
+  .footerRoot {
+    --ifm-footer-padding-vertical: 2.5rem; /* md:py-10 */
+  }
+}
+
+/* 容器: max-width 1280, px-4 md:px-8 lg:px-0 */
+.inner {
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 1rem; /* px-4 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem; /* rowGap 32 */
+}
+
+@media (min-width: 768px) {
+  .inner {
+    padding: 0 2rem; /* md:px-8 */
+  }
+}
+
+@media (min-width: 1024px) {
+  .inner {
+    padding: 0; /* lg:px-0 */
+  }
+}
+
+/* ---------- 顶部:品牌区 + (链接列 + 二维码) ---------- */
+.top {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  column-gap: 2rem; /* columnGap 32 */
+  row-gap: 2.5rem; /* rowGap 40 */
+}
+
+@media (min-width: 1024px) {
+  .top {
+    flex-direction: row;
+  }
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  gap: 1rem; /* rowGap 16 */
+  flex: 1 0 0;
+}
+
+@media (min-width: 1024px) {
+  .brand {
+    width: auto;
+  }
+}
+
+.brandLogo {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem; /* columnGap 4 */
+  font-family: 'PingFang SC', 'PingFang SC Placeholder', sans-serif;
+  font-size: 1.125rem; /* 18px */
+  font-weight: 600;
+  letter-spacing: 0.15px;
+  line-height: 26px;
+  color: var(--ft-heading);
+}
+
+.brandLogo img {
+  display: block;
+  flex-shrink: 0;
+}
+
+.tagline {
+  margin: 0;
+  font-family: 'Inter', 'Inter Placeholder', sans-serif;
+  font-size: 1.125rem; /* 18px */
+  font-weight: 400;
+  line-height: 28px;
+  letter-spacing: -0.01em;
+  color: var(--ft-meta);
+}
+
+.right {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 2rem; /* rowGap 32 */
+}
+
+@media (min-width: 1024px) {
+  .right {
+    width: auto;
+  }
+}
+
+/* ---------- 链接列 ---------- */
+.columns {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  column-gap: 0.625rem; /* columnGap 10 */
+  row-gap: 1.5rem; /* rowGap 24 */
+}
+
+@media (min-width: 768px) {
+  .columns {
+    flex-direction: row;
+  }
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  gap: 0.625rem; /* rowGap 10 */
+}
+
+@media (min-width: 768px) {
+  .column {
+    width: 150px;
+  }
+
+  .columnWide {
+    width: 220px;
+  }
+}
+
+.columnTitle {
+  margin: 0;
+  width: 100%;
+  text-align: left;
+  font-family: 'Inter', 'Inter Placeholder', sans-serif;
+  font-size: 1rem; /* 16px */
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: -0.01em;
+  color: var(--ft-heading);
+}
+
+.link {
+  font-family: 'Inter', 'Inter Placeholder', sans-serif;
+  font-size: 1rem; /* 16px */
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: -0.01em;
+  text-align: left;
+  color: var(--ft-link);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.link:hover {
+  color: var(--ft-link-hover);
+  text-decoration: none;
+}
+
+/* 纯文本项(如邮箱),字体同链接但颜色继承默认文本色 */
+.linkText {
+  width: 100%;
+  font-family: 'Inter', 'Inter Placeholder', sans-serif;
+  font-size: 1rem; /* 16px */
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: -0.01em;
+  text-align: left;
+  color: var(--ft-default);
+}
+
+/* ---------- 二维码 ---------- */
+.qrRow {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  column-gap: 0.625rem; /* columnGap 10 */
+  row-gap: 1rem; /* rowGap 16 */
+}
+
+@media (min-width: 768px) {
+  .qrRow {
+    flex-direction: row;
+  }
+}
+
+.qrItem {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 150px;
+  gap: 0.625rem; /* rowGap 10 */
+}
+
+.qrLabel {
+  font-family: 'Inter', 'Inter Placeholder', sans-serif;
+  font-size: 1rem; /* 16px */
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: -0.01em;
+  color: var(--ft-default);
+}
+
+.qrImg {
+  width: 80px;
+  height: 80px;
+  border-radius: 6px;
+  border: 1px solid var(--ft-divider);
   object-fit: contain;
-  pointer-events: none;
-  opacity: 0.5;
+  user-select: none;
 }
 
-.illustrationLight {
+/* ---------- 分隔线 ---------- */
+.divider {
+  width: 100%;
+  height: 1px;
+  background-color: var(--ft-divider);
+}
+
+/* ---------- 底部:版权 + 备案(左) / 社媒(右) ---------- */
+.bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  row-gap: 1rem; /* rowGap 16 */
+}
+
+@media (min-width: 768px) {
+  .bottom {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.legal {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  column-gap: 1.5rem; /* columnGap 24 */
+  row-gap: 0.5rem; /* rowGap 8 */
+}
+
+@media (min-width: 768px) {
+  .legal {
+    justify-content: flex-start;
+    text-align: left;
+  }
+}
+
+.legalCopyright {
+  font-family: 'Inter', 'Inter Placeholder', sans-serif;
+  font-size: 0.9375rem; /* 15px */
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: -0.01em;
+  color: inherit; /* 参考版权链接继承 footer 默认色 */
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.legalCopyright:hover {
+  opacity: 0.7;
+  text-decoration: none;
+}
+
+.legalLink {
+  font-family: 'Inter', 'Inter Placeholder', sans-serif;
+  font-size: 0.9375rem; /* 15px */
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: -0.01em;
+  color: var(--ft-meta);
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.legalLink:hover {
+  opacity: 0.7;
+  text-decoration: none;
+}
+
+.socials {
+  display: flex;
+  align-items: center;
+  column-gap: 1rem; /* columnGap 16 */
+}
+
+.socialLink {
   display: block;
+  width: 24px;
+  height: 24px;
+  transition: transform 0.2s ease;
 }
 
-.illustrationDark {
-  display: none;
+.socialLink:hover {
+  transform: scale(1.1);
 }
 
-[data-theme='dark'] .illustrationLight {
-  display: none;
-}
-
-[data-theme='dark'] .illustrationDark {
+.socialLink img {
   display: block;
+  width: 24px;
+  height: 24px;
+  user-select: none;
 }

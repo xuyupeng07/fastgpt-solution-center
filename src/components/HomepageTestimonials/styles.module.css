@@ -99,7 +99,8 @@
   white-space: nowrap;
   cursor: pointer;
   opacity: 0.65;
-  transition: opacity 0.2s ease, color 0.2s ease;
+  transition: opacity 0.2s ease, color 0.2s ease, background 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .filterBtn:hover {
@@ -115,8 +116,27 @@
   display: inline-flex;
 }
 
+/* 白天模式:选中态用「白 → 浅靛」渐变 + 靛蓝描边 + 深靛文字,替代原本近黑的药丸,柔和不突兀 */
 .filterBtnActive {
   opacity: 1;
+  color: #4338ca;
+  background: linear-gradient(to bottom, #ffffff, #eef2ff) padding-box,
+    linear-gradient(
+        to bottom,
+        rgba(99, 102, 241, 0.25),
+        rgba(99, 102, 241, 0.6)
+      )
+      border-box;
+  border: 1px solid transparent;
+  box-shadow: 0 1px 2px rgba(79, 70, 229, 0.12);
+}
+
+.filterBtnActive .filterIcon {
+  color: #6366f1;
+}
+
+/* 暗色模式:保留原项目的深色药丸(白字 + 靛蓝描边),贴合暗色区块 */
+[data-theme='dark'] .filterBtnActive {
   color: #fff;
   background: linear-gradient(
         to bottom,
@@ -127,11 +147,7 @@
       padding-box,
     linear-gradient(to bottom, rgba(99, 102, 241, 0), rgba(99, 102, 241, 0.5))
       border-box;
-  border: 1px solid transparent;
-}
-
-.filterBtnActive .filterIcon {
-  color: #6366f1;
+  box-shadow: none;
 }
 
 /* 卡片网格 */
@@ -139,6 +155,7 @@
   display: grid;
   gap: 1.5rem;
   grid-template-columns: 1fr;
+  align-items: start;
 }
 
 @media (min-width: 640px) {
@@ -175,6 +192,30 @@
   background: var(--card-surface);
   padding: 1.5rem;
   height: 100%;
+}
+
+.client {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  margin-bottom: 1rem;
+}
+
+.clientMark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 0.5rem;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.clientName {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--ifm-color-emphasis-900);
 }
 
 .quote {

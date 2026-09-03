@@ -207,8 +207,10 @@ export default function CopyPageButton() {
       data-copy-page-button
       className={clsx(styles.copyButton, copied && styles.copied)}
       onClick={handleCopy}
-      aria-label={ariaLabel}
-      title={ariaLabel}>
+      aria-label={ariaLabel}>
+      <span className={styles.tooltip} role="tooltip">
+        {ariaLabel}
+      </span>
       <svg
         className={styles.icon}
         viewBox="0 0 24 24"

@@ -1,18 +1,88 @@
 import {useState, type ReactNode} from 'react';
 import Translate from '@docusaurus/Translate';
 import clsx from 'clsx';
+import useMasonry from '@site/src/utils/useMasonry';
 import styles from './styles.module.css';
 
 type Category = 'all' | 'kb' | 'service' | 'data' | 'workflow';
 
+type LogoKey =
+  | 'manufacturing'
+  | 'group'
+  | 'ecommerce'
+  | 'service'
+  | 'data'
+  | 'content';
+
 type Testimonial = {
   category: Category;
+  logoKey: LogoKey;
   quoteId: string;
   quoteDefault: string;
   name: string;
   roleId: string;
   roleDefault: string;
 };
+
+/** 占位企业 logo:彩色徽标 + 名称,后续可替换为真实品牌图片 */
+const CLIENT_LOGOS: Record<LogoKey, {name: string; color: string; glyph: ReactNode}> =
+  {
+    manufacturing: {
+      name: '华科制造',
+      color: '#2563eb',
+      glyph: (
+        <svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor" aria-hidden="true">
+          <path d="M1.5 15V6.5l4-2 2.5 1.7 2.5-1.7 4 2V15h-13Z" />
+        </svg>
+      ),
+    },
+    group: {
+      name: '云启集团',
+      color: '#6366f1',
+      glyph: (
+        <svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor" aria-hidden="true">
+          <path d="M13 12.5H3.5a2.5 2.5 0 0 1 0-5c.15-1.7 1.55-3 3.3-3 1.15 0 2.15.58 2.75 1.5A2.75 2.75 0 0 1 13 12.5Z" />
+        </svg>
+      ),
+    },
+    ecommerce: {
+      name: '优选商城',
+      color: '#f97316',
+      glyph: (
+        <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
+          <path d="M6 6V5a2 2 0 0 1 4 0v1" fill="none" stroke="currentColor" strokeWidth="1.3" />
+          <path d="M3.2 6h9.6l-.9 8.5a1 1 0 0 1-1 .9H4.1a1 1 0 0 1-1-.9L3.2 6Z" fill="currentColor" />
+        </svg>
+      ),
+    },
+    service: {
+      name: '橙心服务',
+      color: '#10b981',
+      glyph: (
+        <svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor" aria-hidden="true">
+          <path d="M2 4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v6.5a1 1 0 0 1-1 1H7.2L3.8 14v-2.5H3a1 1 0 0 1-1-1V4Z" />
+        </svg>
+      ),
+    },
+    data: {
+      name: '数说科技',
+      color: '#8b5cf6',
+      glyph: (
+        <svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor" aria-hidden="true">
+          <path d="M3 10h3v4H3V10Z M7 6h3v8H7V6Z M11 2h3v12h-3V2Z" />
+        </svg>
+      ),
+    },
+    content: {
+      name: '内容工坊',
+      color: '#ec4899',
+      glyph: (
+        <svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor" aria-hidden="true">
+          <path d="M11.5 3 13 4.5 5.5 12l-2 .5.5-2L11.5 3Z" />
+        </svg>
+      ),
+    },
+  };
 
 const CATEGORIES: {key: Category; id: string; default: string; icon: ReactNode}[] = [
   {
@@ -75,6 +145,7 @@ const CATEGORIES: {key: Category; id: string; default: string; icon: ReactNode}[
 const TESTIMONIALS: Testimonial[] = [
   {
     category: 'kb',
+    logoKey: 'manufacturing',
     quoteId: 'homepage.testimonials.q1',
     quoteDefault:
       '我们把几百份产品文档导入 FastGPT，客户咨询的响应从几小时缩短到秒级，检索结果还能溯源到原文。',
@@ -84,6 +155,7 @@ const TESTIMONIALS: Testimonial[] = [
   },
   {
     category: 'kb',
+    logoKey: 'group',
     quoteId: 'homepage.testimonials.q2',
     quoteDefault:
       'FastGPT 的混合检索加重排序让答案精准了很多，内部制度问答不再答非所问。',
@@ -93,6 +165,7 @@ const TESTIMONIALS: Testimonial[] = [
   },
   {
     category: 'service',
+    logoKey: 'ecommerce',
     quoteId: 'homepage.testimonials.q3',
     quoteDefault:
       '用 FastGPT 搭的智能客服 7×24 小时在线，常见问题自动解决，人工只处理复杂工单。',
@@ -102,6 +175,7 @@ const TESTIMONIALS: Testimonial[] = [
   },
   {
     category: 'service',
+    logoKey: 'service',
     quoteId: 'homepage.testimonials.q4',
     quoteDefault:
       '工作流里能接入人工转接，复杂问题无缝交给人，客户体验明显提升。',
@@ -111,6 +185,7 @@ const TESTIMONIALS: Testimonial[] = [
   },
   {
     category: 'data',
+    logoKey: 'data',
     quoteId: 'homepage.testimonials.q5',
     quoteDefault:
       'FastGPT 接上数据库后，业务同学用自然语言就能查数、出图，数据分析效率大幅提升。',
@@ -120,6 +195,7 @@ const TESTIMONIALS: Testimonial[] = [
   },
   {
     category: 'workflow',
+    logoKey: 'content',
     quoteId: 'homepage.testimonials.q6',
     quoteDefault:
       '拖拽式工作流把多文档总结、批量翻译串成流水线，省掉了大量重复劳动。',
@@ -131,9 +207,16 @@ const TESTIMONIALS: Testimonial[] = [
 
 function TestimonialCard({item, active}: {item: Testimonial; active: boolean}) {
   const initial = item.name.charAt(0);
+  const logo = CLIENT_LOGOS[item.logoKey];
   return (
     <article className={clsx(styles.card, !active && styles.cardDimmed)}>
       <div className={styles.cardInner}>
+        <div className={styles.client}>
+          <span className={styles.clientMark} style={{backgroundColor: logo.color}}>
+            {logo.glyph}
+          </span>
+          <span className={styles.clientName}>{logo.name}</span>
+        </div>
         <p className={styles.quote}>
           <Translate id={item.quoteId}>{item.quoteDefault}</Translate>
         </p>
@@ -155,11 +238,7 @@ function TestimonialCard({item, active}: {item: Testimonial; active: boolean}) {
 
 export default function HomepageTestimonials(): ReactNode {
   const [category, setCategory] = useState<Category>('all');
-
-  const visible =
-    category === 'all'
-      ? TESTIMONIALS
-      : TESTIMONIALS.filter((t) => t.category === category);
+  const masonryContainer = useMasonry();
 
   return (
     <section className={styles.section}>
@@ -199,9 +278,13 @@ export default function HomepageTestimonials(): ReactNode {
             </div>
           </div>
 
-          <div className={styles.grid}>
-            {visible.map((item, idx) => (
-              <TestimonialCard key={idx} item={item} active />
+          <div className={styles.grid} ref={masonryContainer}>
+            {TESTIMONIALS.map((item, idx) => (
+              <TestimonialCard
+                key={idx}
+                item={item}
+                active={category === 'all' || item.category === category}
+              />
             ))}
           </div>
         </div>

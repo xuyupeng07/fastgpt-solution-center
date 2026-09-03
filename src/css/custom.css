@@ -4,6 +4,9 @@
  * work well for content-centric websites.
  */
 
+/* 页脚与官网一致使用 Inter 字体(400/600),中文回退 PingFang SC */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
 /* You can override the default Infima variables here. */
 :root {
   --ifm-color-primary: #326dff;
@@ -15,6 +18,19 @@
   --ifm-color-primary-lightest: #c3d5ff;
   --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+
+  /* ECharts 语义色板（明暗统一）：主色与 --ifm-color-primary 同源；作者在图表 JSON 里写 token 引用，而非写死 hex */
+  --chart-primary: #326dff;
+  --chart-success: #16a34a;
+  --chart-warning: #d97706;
+  --chart-danger: #dc2626;
+  --chart-neutral: #94a3b8;
+  --chart-violet: #7c3aed;
+  --chart-cyan: #0891b2;
+  --chart-text: #1f2937;
+  --chart-text-secondary: #6b7280;
+  --chart-axis: #e5e7eb;
+  --chart-split: #f3f4f6;
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
@@ -27,6 +43,19 @@
   --ifm-color-primary-lighter: #b7cdff;
   --ifm-color-primary-lightest: #dce6ff;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+
+  /* ECharts 语义色板暗色版：色相不变、亮度上调，保证深色底上可读 */
+  --chart-primary: #7d9fff;
+  --chart-success: #4ade80;
+  --chart-warning: #fbbf24;
+  --chart-danger: #f87171;
+  --chart-neutral: #64748b;
+  --chart-violet: #a78bfa;
+  --chart-cyan: #22d3ee;
+  --chart-text: #e5e7eb;
+  --chart-text-secondary: #94a3b8;
+  --chart-axis: #334155;
+  --chart-split: #1e293b;
 }
 
 /* GitHub logo navbar item: 图标 + 文字,图标在文字左侧,随明暗主题取色 */
@@ -40,18 +69,11 @@
   flex-shrink: 0;
 }
 
-/* Footer 容器相对定位并裁剪底图;背景随主题:白天白色、暗色纯黑 */
+/* Footer 背景随主题:白天白色、暗色纯黑 */
 .footer {
-  position: relative;
-  overflow: hidden;
   --ifm-footer-background-color: #ffffff;
 }
 
 [data-theme='dark'] .footer {
   --ifm-footer-background-color: #030712;
-}
-
-.footer > .container {
-  position: relative;
-  z-index: 1;
 }

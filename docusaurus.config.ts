@@ -45,6 +45,11 @@ const config: Config = {
     '@docusaurus/theme-live-codeblock',
   ],
 
+  plugins: [
+    // 站内搜索：使用 Pagefind 静态索引替代 Algolia DocSearch（构建期生成索引，无需云端搜索服务）
+    'docusaurus-plugin-pagefind',
+  ],
+
   presets: [
     [
       'classic',
@@ -91,14 +96,6 @@ const config: Config = {
     liveCodeBlock: {
       // 运行结果预览区显示在代码块下方
       playgroundPosition: 'bottom',
-    },
-    // Algolia DocSearch 站内搜索
-    algolia: {
-      appId: 'AM2AYQCFB9',
-      apiKey: 'd8acc5a04842618d0fce7e237006ed3e',
-      indexName: 'solutions',
-      // 多语言站点按当前 locale 过滤搜索结果
-      contextualSearch: true,
     },
     navbar: {
       title: 'FastGPT 解决方案中心',
