@@ -39,3 +39,19 @@
   display: block;
   flex-shrink: 0;
 }
+
+/* Footer 容器相对定位并裁剪底图;背景随主题:白天白色、暗色纯黑 */
+.footer {
+  position: relative;
+  overflow: hidden;
+  --ifm-footer-background-color: #ffffff;
+}
+
+[data-theme='dark'] .footer {
+  --ifm-footer-background-color: #030712;
+}
+
+.footer > .container {
+  position: relative;
+  z-index: 1;
+}

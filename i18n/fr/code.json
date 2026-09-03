@@ -327,7 +327,7 @@
     "description": "The title of the tag list page"
   },
   "homepage.hero.cta": {
-    "message": "Tutoriel Docusaurus - 5 min ⏱️",
+    "message": "Découvrir les solutions",
     "description": "The hero call-to-action button on the homepage linking to the docs intro"
   },
   "homepage.hero.title": {
@@ -338,29 +338,41 @@
     "message": "Un centre de solutions éprouvées pour vos applications d'IA en entreprise",
     "description": "The homepage hero tagline"
   },
-  "homepage.feature.easy.title": {
-    "message": "Simple à utiliser",
+  "homepage.feature.rag.title": {
+    "message": "Questions-réponses sur base de connaissances",
     "description": "Homepage feature card title"
   },
-  "homepage.feature.easy.desc": {
-    "message": "Docusaurus a été conçu pour être facile à installer et à utiliser afin de lancer votre site rapidement.",
+  "homepage.feature.rag.desc": {
+    "message": "Import automatique et prétraitement intelligent de documents multi-formats, recherche hybride vectorielle + plein texte avec reclassement pour des réponses précises et traçables.",
     "description": "Homepage feature card description"
   },
-  "homepage.feature.focus.title": {
-    "message": "Concentrez-vous sur ce qui compte",
+  "homepage.feature.workflow.title": {
+    "message": "Orchestration visuelle de workflows",
     "description": "Homepage feature card title"
   },
-  "homepage.feature.focus.desc": {
-    "message": "Docusaurus vous permet de vous concentrer sur votre documentation, nous nous occupons du reste. Placez simplement vos documents dans le dossier {docs}.",
+  "homepage.feature.workflow.desc": {
+    "message": "Conception low-code par glisser-déposer avec plus de 25 nœuds intégrés pour les boucles, le parallélisme et les branchements — orchestrez des logiques complexes sans coder.",
     "description": "Homepage feature card description"
   },
-  "homepage.feature.react.title": {
-    "message": "Propulsé par React",
+  "homepage.feature.agent.title": {
+    "message": "Agents IA et appels d'outils",
     "description": "Homepage feature card title"
   },
-  "homepage.feature.react.desc": {
-    "message": "Étendez ou personnalisez la mise en page de votre site en réutilisant React, tout en conservant les mêmes en-tête et pied de page.",
+  "homepage.feature.agent.desc": {
+    "message": "Function Calling et décisions autonomes de l'agent, combinant outils, compétences et bases de connaissances, avec un MCP bidirectionnel intégré pour connecter les systèmes externes.",
     "description": "Homepage feature card description"
+  },
+  "homepage.features.label": {
+    "message": "Capacités clés",
+    "description": "The badge label above the homepage feature section heading"
+  },
+  "homepage.features.title": {
+    "message": "Conçu pour votre parcours IA",
+    "description": "The homepage feature section heading"
+  },
+  "homepage.features.desc": {
+    "message": "De la base de connaissances aux workflows d'agents, FastGPT offre des capacités prêtes à l'emploi pour créer et déployer des applications IA d'entreprise en quelques minutes.",
+    "description": "The homepage feature section description"
   },
   "theme.copyPage.label": {
     "message": "Copier la page",
@@ -373,5 +385,153 @@
   "theme.copyPage.ariaLabel": {
     "message": "Copier le contenu Markdown de la page actuelle",
     "description": "Accessible label for the copy page button"
+  },
+  "homepage.highlights.label": {
+    "message": "Fonctionnalités de la plateforme",
+    "description": "Badge label above the highlights section heading"
+  },
+  "homepage.highlights.title": {
+    "message": "Conçu pour les équipes produit modernes",
+    "description": "Highlights section heading"
+  },
+  "homepage.highlights.desc": {
+    "message": "FastGPT réunit bases de connaissances, workflows et agents IA pour permettre aux équipes de déployer des applications IA d'entreprise sans expertise approfondie.",
+    "description": "Highlights section description"
+  },
+  "homepage.highlights.rag.title": {
+    "message": "Base de connaissances & RAG",
+    "description": "Highlight item title"
+  },
+  "homepage.highlights.rag.desc": {
+    "message": "Import automatique et prétraitement intelligent de documents multi-formats, recherche hybride vectorielle + plein texte, précise et traçable.",
+    "description": "Highlight item description"
+  },
+  "homepage.highlights.workflow.title": {
+    "message": "Workflows visuels",
+    "description": "Highlight item title"
+  },
+  "homepage.highlights.workflow.desc": {
+    "message": "Orchestration low-code par glisser-déposer avec plus de 25 nœuds intégrés pour les boucles, le parallélisme et les branchements.",
+    "description": "Highlight item description"
+  },
+  "homepage.highlights.agent.title": {
+    "message": "Agents IA & MCP",
+    "description": "Highlight item title"
+  },
+  "homepage.highlights.agent.desc": {
+    "message": "Function Calling avec décisions autonomes et MCP bidirectionnel pour connecter outils et systèmes externes.",
+    "description": "Highlight item description"
+  },
+  "homepage.highlights.models.title": {
+    "message": "Indépendant des modèles",
+    "description": "Highlight item title"
+  },
+  "homepage.highlights.models.desc": {
+    "message": "Une passerelle AI Proxy unifiée connectant ChatGPT, Claude, DeepSeek, ERNIE et d'autres modèles courants.",
+    "description": "Highlight item description"
+  },
+  "homepage.highlights.security.title": {
+    "message": "Permissions & collaboration",
+    "description": "Highlight item title"
+  },
+  "homepage.highlights.security.desc": {
+    "message": "Permissions au niveau des ressources ABAC + RBAC, collaboration d'équipe et publication multicanale.",
+    "description": "Highlight item description"
+  },
+  "homepage.highlights.deploy.title": {
+    "message": "Déploiement privé",
+    "description": "Highlight item title"
+  },
+  "homepage.highlights.deploy.desc": {
+    "message": "Déploiement privé en un clic via Docker Compose, ainsi qu'une option SaaS entièrement gérée.",
+    "description": "Highlight item description"
+  },
+  "homepage.testimonials.title": {
+    "message": "Ne nous croyez pas sur parole",
+    "description": "Testimonials section heading"
+  },
+  "homepage.testimonials.desc": {
+    "message": "FastGPT a aidé de nombreuses équipes à mettre l'IA au service des bases de connaissances, du service client et de l'analyse de données.",
+    "description": "Testimonials section description"
+  },
+  "homepage.testimonials.category.all": {
+    "message": "Tout",
+    "description": "Testimonial filter label"
+  },
+  "homepage.testimonials.category.kb": {
+    "message": "Base de connaissances",
+    "description": "Testimonial filter label"
+  },
+  "homepage.testimonials.category.service": {
+    "message": "Service client",
+    "description": "Testimonial filter label"
+  },
+  "homepage.testimonials.category.data": {
+    "message": "Analyse de données",
+    "description": "Testimonial filter label"
+  },
+  "homepage.testimonials.category.workflow": {
+    "message": "Automatisation des workflows",
+    "description": "Testimonial filter label"
+  },
+  "homepage.testimonials.q1": {
+    "message": "Nous avons importé des centaines de documents produit dans FastGPT ; les réponses aux clients sont passées de plusieurs heures à quelques secondes, avec traçabilité jusqu'à la source.",
+    "description": "Testimonial quote"
+  },
+  "homepage.testimonials.q2": {
+    "message": "La recherche hybride avec reclassement de FastGPT a rendu les réponses bien plus précises — la FAQ interne ne rate plus le sujet.",
+    "description": "Testimonial quote"
+  },
+  "homepage.testimonials.q3": {
+    "message": "Le bot de service client FastGPT est en ligne 24 h/24, il résout les problèmes courants automatiquement tandis que les agents ne traitent que les tickets complexes.",
+    "description": "Testimonial quote"
+  },
+  "homepage.testimonials.q4": {
+    "message": "Avec le transfert humain intégré au workflow, les problèmes complexes sont transmis sans couture et l'expérience client s'est nettement améliorée.",
+    "description": "Testimonial quote"
+  },
+  "homepage.testimonials.q5": {
+    "message": "Une fois FastGPT connecté à notre base de données, les utilisateurs métier peuvent interroger les données et créer des graphiques en langage naturel — l'analyse est bien plus rapide.",
+    "description": "Testimonial quote"
+  },
+  "homepage.testimonials.q6": {
+    "message": "Les workflows par glisser-déposer ont enchaîné la synthèse multi-documents et la traduction par lots, supprimant beaucoup de travail répétitif.",
+    "description": "Testimonial quote"
+  },
+  "homepage.testimonials.r1": {
+    "message": "Responsable gestion des connaissances, industrie",
+    "description": "Testimonial role"
+  },
+  "homepage.testimonials.r2": {
+    "message": "Responsable informatique du groupe",
+    "description": "Testimonial role"
+  },
+  "homepage.testimonials.r3": {
+    "message": "Responsable service client, e-commerce",
+    "description": "Testimonial role"
+  },
+  "homepage.testimonials.r4": {
+    "message": "Responsable des opérations support",
+    "description": "Testimonial role"
+  },
+  "homepage.testimonials.r5": {
+    "message": "Analyste de données",
+    "description": "Testimonial role"
+  },
+  "homepage.testimonials.r6": {
+    "message": "Responsable équipe contenu",
+    "description": "Testimonial role"
+  },
+  "homepage.cta.title": {
+    "message": "Commencez à construire votre application IA",
+    "description": "CTA section heading"
+  },
+  "homepage.cta.primary": {
+    "message": "Commencer",
+    "description": "CTA primary button"
+  },
+  "homepage.cta.secondary": {
+    "message": "Planifier une démo",
+    "description": "CTA secondary button"
   }
 }

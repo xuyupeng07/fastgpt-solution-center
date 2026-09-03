@@ -27,6 +27,11 @@ const config: Config = {
 
   onBrokenLinks: 'throw',
 
+  // Mermaid 流程图支持
+  markdown: {
+    mermaid: true,
+  },
+
   // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang. For example, if your site is Chinese, you
   // may want to replace "en" with "zh-Hans".
@@ -34,6 +39,11 @@ const config: Config = {
     defaultLocale: 'zh-Hans',
     locales: ['zh-Hans', 'en', 'fr'],
   },
+
+  themes: [
+    '@docusaurus/theme-mermaid',
+    '@docusaurus/theme-live-codeblock',
+  ],
 
   presets: [
     [
@@ -77,6 +87,19 @@ const config: Config = {
     colorMode: {
       respectPrefersColorScheme: true,
     },
+    // 可交互代码块（代码块 language 加 live 后缀即可运行，如 `jsx live`）
+    liveCodeBlock: {
+      // 运行结果预览区显示在代码块下方
+      playgroundPosition: 'bottom',
+    },
+    // Algolia DocSearch 站内搜索
+    algolia: {
+      appId: 'AM2AYQCFB9',
+      apiKey: 'd8acc5a04842618d0fce7e237006ed3e',
+      indexName: 'solutions',
+      // 多语言站点按当前 locale 过滤搜索结果
+      contextualSearch: true,
+    },
     navbar: {
       title: 'FastGPT 解决方案中心',
       logo: {
@@ -104,7 +127,6 @@ const config: Config = {
       ],
     },
     footer: {
-      style: 'dark',
       links: [
         {
           title: '文档',

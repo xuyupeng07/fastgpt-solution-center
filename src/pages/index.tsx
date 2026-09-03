@@ -1,26 +1,54 @@
-import type {CSSProperties, ReactNode} from 'react';
+import React, {type ReactNode} from 'react';
 import Translate, {translate} from '@docusaurus/Translate';
 import clsx from 'clsx';
 import Link from '@docusaurus/Link';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import Layout from '@theme/Layout';
 import HomepageFeatures from '@site/src/components/HomepageFeatures';
+import HomepageHighlights from '@site/src/components/HomepageHighlights';
+import HomepageTestimonials from '@site/src/components/HomepageTestimonials';
+import HomepageCta from '@site/src/components/HomepageCta';
 import Heading from '@theme/Heading';
 
 import styles from './index.module.css';
 
 function HomepageHeader() {
-  const lightBg = useBaseUrl('img/hero-light.jpg');
-  const darkBg = useBaseUrl('img/hero-dark.jpg');
-  const style = {
-    '--hero-bg-light': `url('${lightBg}')`,
-    '--hero-bg-dark': `url('${darkBg}')`,
-  } as CSSProperties;
+  const heroBgs = [
+    {
+      position: styles.heroBgTop,
+      light: useBaseUrl('img/page-illustration-light.svg'),
+      dark: useBaseUrl('img/page-illustration.svg'),
+    },
+    {
+      position: styles.heroBgGray,
+      light: useBaseUrl('img/blurred-shape-gray-light.svg'),
+      dark: useBaseUrl('img/blurred-shape-gray.svg'),
+    },
+    {
+      position: styles.heroBgIndigo,
+      light: useBaseUrl('img/blurred-shape-light.svg'),
+      dark: useBaseUrl('img/blurred-shape.svg'),
+    },
+  ];
 
   return (
-    <header
-      className={clsx('hero hero--primary', styles.heroBanner)}
-      style={style}>
+    <header className={clsx('hero hero--primary', styles.heroBanner)}>
+      {heroBgs.map((bg, idx) => (
+        <React.Fragment key={idx}>
+          <img
+            className={clsx(styles.heroBg, bg.position, styles.heroBgLight)}
+            src={bg.light}
+            alt=""
+            aria-hidden="true"
+          />
+          <img
+            className={clsx(styles.heroBg, bg.position, styles.heroBgDark)}
+            src={bg.dark}
+            alt=""
+            aria-hidden="true"
+          />
+        </React.Fragment>
+      ))}
       <div className="container">
         <Heading as="h1" className="hero__title">
           <Translate id="homepage.hero.title">FastGPT 解决方案中心</Translate>
@@ -35,7 +63,7 @@ function HomepageHeader() {
             className="button button--secondary button--lg"
             to="/docs/intro">
             <Translate id="homepage.hero.cta">
-              {'Docusaurus 教程 - 5 分钟 ⏱️'}
+              {'浏览解决方案'}
             </Translate>
           </Link>
         </div>
@@ -54,6 +82,9 @@ export default function Home(): ReactNode {
       <HomepageHeader />
       <main>
         <HomepageFeatures />
+        <HomepageHighlights />
+        <HomepageTestimonials />
+        <HomepageCta />
       </main>
     </Layout>
   );

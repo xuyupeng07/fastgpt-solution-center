@@ -1,0 +1,236 @@
+/* 复刻 open-react-template Testimonials 区块:渐变描边卡片 + 分类筛选 */
+
+.section {
+  position: relative;
+  padding: 4rem 0;
+  --accent: #6366f1;
+  --accent-soft: #c7d2fe;
+  --heading-gradient: linear-gradient(to right, #111827, #4f46e5, #111827);
+  --card-surface: #ffffff;
+  --quote-color: #4b5563;
+  --filter-muted: #4b5563;
+}
+
+[data-theme='dark'] .section {
+  --heading-gradient: linear-gradient(
+    to right,
+    #e5e7eb,
+    #c7d2fe,
+    #f9fafb,
+    #a5b4fc,
+    #e5e7eb
+  );
+  --card-surface: #0b0d12;
+  --quote-color: rgba(199, 210, 254, 0.65);
+  --filter-muted: #9ca3af;
+}
+
+.inner {
+  border-top: 1px solid var(--ifm-color-emphasis-200);
+  padding-top: 4rem;
+}
+
+.header {
+  max-width: 48rem;
+  margin: 0 auto 2.5rem;
+  text-align: center;
+}
+
+.headerTitle {
+  margin: 0 0 0.75rem;
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  line-height: 1.15;
+  letter-spacing: -0.0268em;
+  font-weight: 600;
+  background-image: var(--heading-gradient);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradient 6s linear infinite;
+}
+
+.headerDesc {
+  margin: 0;
+  font-size: 1.125rem;
+  line-height: 1.6;
+  color: var(--quote-color);
+}
+
+/* 分类筛选:胶囊分组容器(复刻原项目 bg-gray-800/40 p-1 圆角容器) */
+.filters {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 3rem;
+}
+
+@media (min-width: 768px) {
+  .filters {
+    padding-bottom: 4rem;
+  }
+}
+
+.filterGroup {
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.25rem;
+  border-radius: 1.25rem;
+  background: rgba(99, 102, 241, 0.08);
+  padding: 0.25rem;
+}
+
+[data-theme='dark'] .filterGroup {
+  background: rgba(31, 41, 55, 0.4);
+}
+
+.filterBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  height: 2rem;
+  padding: 0 0.75rem;
+  border-radius: 9999px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--filter-muted);
+  font-size: 0.875rem;
+  font-weight: 500;
+  white-space: nowrap;
+  cursor: pointer;
+  opacity: 0.65;
+  transition: opacity 0.2s ease, color 0.2s ease;
+}
+
+.filterBtn:hover {
+  opacity: 0.9;
+}
+
+.filterBtn:focus-visible {
+  outline: 3px solid var(--accent-soft);
+  outline-offset: 1px;
+}
+
+.filterIcon {
+  display: inline-flex;
+}
+
+.filterBtnActive {
+  opacity: 1;
+  color: #fff;
+  background: linear-gradient(
+        to bottom,
+        #111827,
+        rgba(31, 41, 55, 0.6),
+        #111827
+      )
+      padding-box,
+    linear-gradient(to bottom, rgba(99, 102, 241, 0), rgba(99, 102, 241, 0.5))
+      border-box;
+  border: 1px solid transparent;
+}
+
+.filterBtnActive .filterIcon {
+  color: #6366f1;
+}
+
+/* 卡片网格 */
+.grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 640px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.card {
+  position: relative;
+  border-radius: 1rem;
+  padding: 1px;
+  background: linear-gradient(
+    to right,
+    rgba(99, 102, 241, 0.15),
+    rgba(99, 102, 241, 0.35),
+    rgba(99, 102, 241, 0.15)
+  );
+  transition: opacity 0.3s ease;
+}
+
+.cardDimmed {
+  opacity: 0.3;
+}
+
+.cardInner {
+  border-radius: inherit;
+  background: var(--card-surface);
+  padding: 1.5rem;
+  height: 100%;
+}
+
+.quote {
+  margin: 0 0 1.25rem;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--quote-color);
+}
+
+.quote::before {
+  content: '“';
+}
+
+.quote::after {
+  content: '”';
+}
+
+.author {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 9999px;
+  flex-shrink: 0;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(to bottom right, #6366f1, #8b5cf6);
+}
+
+.authorMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.name {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--ifm-color-emphasis-900);
+}
+
+.role {
+  font-size: 0.8125rem;
+  color: var(--quote-color);
+}
+
+@keyframes gradient {
+  to {
+    background-position: 200% center;
+  }
+}

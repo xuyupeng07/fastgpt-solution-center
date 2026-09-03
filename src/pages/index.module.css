@@ -4,7 +4,8 @@
  */
 
 .heroBanner {
-  min-height: 78vh;
+  min-height: 100vh;
+  min-height: 100svh; /* 现代浏览器:适配移动端动态工具栏,避免地址栏遮挡 */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -13,58 +14,80 @@
   position: relative;
   overflow: hidden;
   color: #10233f;
-  background-image: var(--hero-bg-light);
-  background-size: cover;
-  background-position: center;
   isolation: isolate;
 }
 
-/* 覆盖 hero--primary 的默认背景色,让图片透出来 */
+/* 覆盖 hero--primary 的默认背景色 */
 .heroBanner:global(.hero--primary) {
   --ifm-hero-background-color: transparent;
 }
 
-/* 文字可读性:在背景图上叠加一层柔光 */
-.heroBanner::before {
-  content: '';
+/* 复刻原项目的 PageIllustration 背景图 */
+.heroBg {
   position: absolute;
-  inset: 0;
+  pointer-events: none;
   z-index: -1;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.55),
-    rgba(255, 255, 255, 0.2) 45%,
-    rgba(255, 255, 255, 0.55)
-  );
+  max-width: none;
+}
+
+.heroBgTop {
+  top: 0;
+  left: 50%;
+  transform: translateX(-25%);
+}
+
+.heroBgGray {
+  top: 25rem;
+  left: 50%;
+  transform: translateX(-100%);
+  opacity: 0.5;
+}
+
+.heroBgIndigo {
+  top: 27.5rem;
+  left: 50%;
+  transform: translateX(-33.333%);
+}
+
+/* 明暗主题切换背景图 */
+.heroBgLight {
+  display: block;
+}
+
+.heroBgDark {
+  display: none;
+}
+
+[data-theme='dark'] .heroBgLight {
+  display: none;
+}
+
+[data-theme='dark'] .heroBgDark {
+  display: block;
 }
 
 .heroBanner :global(.hero__title) {
   color: #10233f;
-  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.6);
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  font-weight: 700;
 }
 
 .heroBanner :global(.hero__subtitle) {
   color: #31455f;
+  font-size: clamp(1.125rem, 2.2vw, 1.5rem);
+  line-height: 1.6;
+  margin-top: 0.75rem;
 }
 
 /* 暗色模式 */
 [data-theme='dark'] .heroBanner {
   color: #eaf4ff;
-  background-image: var(--hero-bg-dark);
-}
-
-[data-theme='dark'] .heroBanner::before {
-  background: linear-gradient(
-    180deg,
-    rgba(4, 10, 24, 0.65),
-    rgba(4, 10, 24, 0.35) 45%,
-    rgba(4, 10, 24, 0.65)
-  );
 }
 
 [data-theme='dark'] .heroBanner :global(.hero__title) {
   color: #f3f9ff;
-  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
 }
 
 [data-theme='dark'] .heroBanner :global(.hero__subtitle) {
@@ -73,7 +96,7 @@
 
 @media screen and (max-width: 996px) {
   .heroBanner {
-    min-height: 56vh;
+    min-height: 100svh;
     padding: 2rem;
   }
 }
