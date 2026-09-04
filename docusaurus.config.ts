@@ -7,7 +7,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 const config: Config = {
   title: 'FastGPT 解决方案中心',
   tagline: '面向企业级 AI 应用的解决方案沉淀',
-  favicon: 'img/fastgpt.svg',
+  favicon: 'img/brand/fastgpt.svg',
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
   future: {
@@ -88,7 +88,7 @@ const config: Config = {
 
   themeConfig: {
     // Replace with your project's social card
-    image: 'img/docusaurus-social-card.jpg',
+    image: 'img/brand/docusaurus-social-card.jpg',
     colorMode: {
       respectPrefersColorScheme: true,
     },
@@ -101,7 +101,7 @@ const config: Config = {
       title: 'FastGPT 解决方案中心',
       logo: {
         alt: 'FastGPT Logo',
-        src: 'img/fastgpt.svg',
+        src: 'img/brand/fastgpt.svg',
       },
       items: [
         {
@@ -120,6 +120,18 @@ const config: Config = {
           href: 'https://github.com/xuyupeng07/fastgpt-solution-center',
           label: 'GitHub',
           position: 'right',
+        },
+        {
+          href: 'https://fael3z0zfze.feishu.cn/share/base/form/shrcnmi17ze9c8dKMqZv4vmhtwe?prefill_source=solutions&hide_source=1',
+          label: '商务咨询',
+          position: 'right',
+          className: 'nav-cta nav-cta-outline',
+        },
+        {
+          href: 'https://fastgpt.cn/',
+          label: '立即开始',
+          position: 'right',
+          className: 'nav-cta nav-cta-primary',
         },
       ],
     },

@@ -10,6 +10,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 import {ThemeClassNames} from '@docusaurus/theme-common';
 
 import styles from './styles.module.css';
+import HomepageCta from '@site/src/components/HomepageCta';
 
 const BRAND = 'FastGPT';
 const TAGLINE = '企业级AI生产力引擎';
@@ -102,85 +103,126 @@ function SocialItem({label, href, src}) {
 }
 
 export default function FooterLayout({style}) {
-  const logoUrl = useBaseUrl('img/fastgpt.svg');
+  const logoUrl = useBaseUrl('img/brand/fastgpt.svg');
   const year = new Date().getFullYear();
 
   return (
-    <footer
-      className={clsx(ThemeClassNames.layout.footer.container, 'footer', styles.footerRoot, {
-        'footer--dark': style === 'dark',
-      })}>
-      <div className={styles.inner}>
-        {/* 顶部:品牌区 + (链接列 + 二维码) */}
-        <div className={styles.top}>
-          <div className={styles.brand}>
-            <div className={styles.brandLogo}>
-              <img src={logoUrl} alt="FastGPT" width={22} height={22} draggable={false} />
-              <span>{BRAND}</span>
+    <>
+      <HomepageCta />
+      <footer
+        className={clsx(ThemeClassNames.layout.footer.container, 'footer', styles.footerRoot, {
+          'footer--dark': style === 'dark',
+        })}>
+        {/* 环境氛围光:复用 blurred-shape 系列 SVG,明暗主题各取一套 */}
+        <img
+          className={clsx(styles.bgShape, styles.bgShapeBlue, styles.bgLight)}
+          src={useBaseUrl('img/shapes/blurred-shape-blue-light.svg')}
+          alt=""
+          aria-hidden="true"
+        />
+        <img
+          className={clsx(styles.bgShape, styles.bgShapeBlue, styles.bgDark)}
+          src={useBaseUrl('img/shapes/blurred-shape-blue.svg')}
+          alt=""
+          aria-hidden="true"
+        />
+        <img
+          className={clsx(styles.bgShape, styles.bgShapeCyan, styles.bgLight)}
+          src={useBaseUrl('img/shapes/blurred-shape-cyan-light.svg')}
+          alt=""
+          aria-hidden="true"
+        />
+        <img
+          className={clsx(styles.bgShape, styles.bgShapeCyan, styles.bgDark)}
+          src={useBaseUrl('img/shapes/blurred-shape-cyan.svg')}
+          alt=""
+          aria-hidden="true"
+        />
+        {/* 底部插图:footer-illustration 系列,横贯页脚底部作收尾,明暗主题各取一套 */}
+        <img
+          className={clsx(styles.footerIllustration, styles.bgLight)}
+          src={useBaseUrl('img/illustrations/footer-illustration-light.svg')}
+          alt=""
+          aria-hidden="true"
+        />
+        <img
+          className={clsx(styles.footerIllustration, styles.bgDark)}
+          src={useBaseUrl('img/illustrations/footer-illustration.svg')}
+          alt=""
+          aria-hidden="true"
+        />
+        <div className={styles.inner}>
+          {/* 顶部:品牌区 + (链接列 + 二维码) */}
+          <div className={styles.top}>
+            <div className={styles.brand}>
+              <div className={styles.brandLogo}>
+                <img src={logoUrl} alt="FastGPT" width={22} height={22} draggable={false} />
+                <span>{BRAND}</span>
+              </div>
+              <p className={styles.tagline}>{TAGLINE}</p>
             </div>
-            <p className={styles.tagline}>{TAGLINE}</p>
+
+            <div className={styles.right}>
+              <div className={styles.columns}>
+                {columns.map((col) => (
+                  <div
+                    key={col.title}
+                    className={clsx(styles.column, col.wide && styles.columnWide)}>
+                    <h2 className={styles.columnTitle}>{col.title}</h2>
+                    {col.items.map((item) =>
+                      item.href ? (
+                        <a
+                          key={item.label}
+                          href={item.href}
+                          {...(item.href.startsWith('http') ? externalAttrs : {})}
+                          className={styles.link}>
+                          {item.label}
+                        </a>
+                      ) : (
+                        <span key={item.label} className={styles.linkText}>
+                          {item.label}
+                        </span>
+                      ),
+                    )}
+                  </div>
+                ))}
+              </div>
+
+              <div className={styles.qrRow}>
+                {qrs.map((q) => (
+                  <QrItem key={q.label} {...q} />
+                ))}
+              </div>
+            </div>
           </div>
 
-          <div className={styles.right}>
-            <div className={styles.columns}>
-              {columns.map((col) => (
-                <div
-                  key={col.title}
-                  className={clsx(styles.column, col.wide && styles.columnWide)}>
-                  <h2 className={styles.columnTitle}>{col.title}</h2>
-                  {col.items.map((item) =>
-                    item.href ? (
-                      <a
-                        key={item.label}
-                        href={item.href}
-                        {...(item.href.startsWith('http') ? externalAttrs : {})}
-                        className={styles.link}>
-                        {item.label}
-                      </a>
-                    ) : (
-                      <span key={item.label} className={styles.linkText}>
-                        {item.label}
-                      </span>
-                    ),
-                  )}
-                </div>
-              ))}
-            </div>
+          {/* 分隔线 */}
+          <div className={styles.divider} />
 
-            <div className={styles.qrRow}>
-              {qrs.map((q) => (
-                <QrItem key={q.label} {...q} />
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* 分隔线 */}
-        <div className={styles.divider} />
-
-        {/* 底部:版权 + 备案(左) / 社媒(右) */}
-        <div className={styles.bottom}>
-          <div className={styles.legal}>
-            <a
-              href="https://github.com/labring/FastGPT"
-              {...externalAttrs}
-              className={styles.legalCopyright}>
-              © {year} {COPYRIGHT}
-            </a>
-            {legal.map((l) => (
-              <a key={l.label} href={l.href} {...externalAttrs} className={styles.legalLink}>
-                {l.label}
+          {/* 底部:版权 + 备案(左) / 社媒(右) */}
+          <div className={styles.bottom}>
+            <div className={styles.legal}>
+              <a
+                href="https://github.com/labring/FastGPT"
+                {...externalAttrs}
+                className={styles.legalCopyright}>
+                © {year} {COPYRIGHT}
               </a>
-            ))}
-          </div>
+              {legal.map((l) => (
+                <a key={l.label} href={l.href} {...externalAttrs} className={styles.legalLink}>
+                  {l.label}
+                </a>
+              ))}
+            </div>
 
-          <div className={styles.socials}>
-            {socials.map((s) => (
-              <SocialItem key={s.label} {...s} />
-            ))}
+            <div className={styles.socials}>
+              {socials.map((s) => (
+                <SocialItem key={s.label} {...s} />
+              ))}
+            </div>
           </div>
         </div>
-      </div>
-    </footer>
+      </footer>
+    </>
   );
 }

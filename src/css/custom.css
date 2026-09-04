@@ -69,11 +69,84 @@
   flex-shrink: 0;
 }
 
-/* Footer 背景随主题:白天白色、暗色纯黑 */
+/* Footer 背景随主题:白天浅灰(slate-100)、暗色纯黑 */
 .footer {
-  --ifm-footer-background-color: #ffffff;
+  --ifm-footer-background-color: #f1f5f9;
 }
 
 [data-theme='dark'] .footer {
   --ifm-footer-background-color: #030712;
+}
+
+/* 导航栏背景与页脚同族(slate 灰阶):白天浅灰白(slate-50)、暗色纯黑 */
+.navbar {
+  --ifm-navbar-background-color: #f8fafc;
+}
+
+[data-theme='dark'] .navbar {
+  --ifm-navbar-background-color: #030712;
+}
+
+/* 暗色模式下搜索框背景调浅一点,与导航栏(#030712)区分开 */
+[data-theme='dark'] .DocSearch-Button {
+  background: #1e293b;
+}
+
+[data-theme='dark'] .DocSearch-Button:hover,
+[data-theme='dark'] .DocSearch-Button:focus {
+  background: #334155;
+}
+
+/* 导航栏右侧 CTA 按钮：商务咨询（描边）、立即开始（紫色渐变），样式与首页 CTA 区块按钮一致 */
+/* Docusaurus 把明暗切换与搜索框硬编码在右侧配置项之后，这里用 flex order 把两个按钮顶到最右端 */
+.navbar__items--right .nav-cta {
+  order: 20;
+}
+
+.navbar .nav-cta {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.7rem 1.4rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  line-height: 1;
+  text-decoration: none;
+}
+
+/* 隐藏 Docusaurus 对外部链接自动追加的图标，按钮样式下更干净 */
+.navbar .nav-cta svg {
+  display: none;
+}
+
+/* 商务咨询：描边按钮 */
+.navbar .nav-cta-outline {
+  margin-left: 1rem;
+  margin-right: 1rem;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  background: var(--ifm-background-surface-color);
+  color: var(--ifm-color-emphasis-800);
+  transition: filter 0.2s ease, transform 0.2s ease;
+}
+
+.navbar .nav-cta-outline:hover {
+  color: var(--ifm-color-emphasis-900);
+  filter: brightness(1.06);
+  transform: translateY(-1px);
+}
+
+/* 立即开始：紫色渐变按钮 */
+.navbar .nav-cta-primary {
+  background: linear-gradient(to top, #4f46e5, #6366f1);
+  background-size: 100% 100%;
+  background-position: bottom;
+  color: #fff;
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.16);
+  transition: background-size 0.2s ease, transform 0.2s ease;
+}
+
+.navbar .nav-cta-primary:hover {
+  color: #fff;
+  text-decoration: none;
+  background-size: 100% 150%;
+  transform: translateY(-1px);
 }

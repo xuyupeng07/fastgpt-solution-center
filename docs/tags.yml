@@ -9,3 +9,27 @@
 IM连接器:
   label: IM 连接器
   description: 将 FastGPT 接入钉钉、飞书、企业微信等办公 IM 的桥接服务
+
+报告:
+  label: 报告
+  description: 报告生成场景的 AI 解决方案
+
+翻译:
+  label: 翻译
+  description: 翻译场景的 AI 解决方案
+
+出题:
+  label: 出题
+  description: 教育行业出题场景的 AI 解决方案
+
+批改:
+  label: 批改
+  description: 教育行业批改场景的 AI 解决方案
+
+导诊:
+  label: 导诊
+  description: 医疗行业导诊预问诊场景的 AI 解决方案
+
+诊疗:
+  label: 诊疗
+  description: 医疗行业临床诊疗辅助场景的 AI 解决方案

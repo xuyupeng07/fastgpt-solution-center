@@ -1,7 +1,16 @@
 xuyupeng:
-  name: XuYuPeng
+  name: Echo Xu
   title: FastGPT 解决方案工程师
-  image_url: /img/XuYuPeng.png
+  image_url: /img/authors/XuYuPeng.png
   socials:
     x: yupengxu33623
     github: xuyupeng07
+
+
+
+tangchengrui:
+  name: Rowan Tang
+  title: FastGPT 解决方案工程师
+  image_url: /img/authors/TangChengRui.png
+  socials:
+    github: RowanRs7

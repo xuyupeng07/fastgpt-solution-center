@@ -18,3 +18,6 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Claude local skills (may contain secrets)
+.claude/skills/solution-illustration/

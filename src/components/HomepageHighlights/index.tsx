@@ -1,6 +1,7 @@
 import type {ReactNode} from 'react';
 import Translate from '@docusaurus/Translate';
 import clsx from 'clsx';
+import useBaseUrl from '@docusaurus/useBaseUrl';
 import styles from './styles.module.css';
 
 type Highlight = {
@@ -107,6 +108,19 @@ const Highlights: Highlight[] = [
 export default function HomepageHighlights(): ReactNode {
   return (
     <section className={styles.section}>
+      {/* 环境氛围光:紫色系光晕,置于内容之下 */}
+      <img
+        className={clsx(styles.bgShape, styles.bgShapeViolet, styles.bgLight)}
+        src={useBaseUrl('img/shapes/blurred-shape-violet-light.svg')}
+        alt=""
+        aria-hidden="true"
+      />
+      <img
+        className={clsx(styles.bgShape, styles.bgShapeViolet, styles.bgDark)}
+        src={useBaseUrl('img/shapes/blurred-shape-violet.svg')}
+        alt=""
+        aria-hidden="true"
+      />
       <div className="container">
         <div className={styles.inner}>
           <div className={styles.header}>

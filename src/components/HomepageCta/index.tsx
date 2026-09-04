@@ -13,7 +13,7 @@ export default function HomepageCta(): ReactNode {
               <Translate id="homepage.cta.title">开始构建你的 AI 应用</Translate>
             </h2>
             <div className={styles.buttons}>
-              <Link className={styles.primaryBtn} to="/docs/企业通用/AI 智能报销助手">
+              <Link className={styles.primaryBtn} href="https://fastgpt.cn/">
                 <Translate id="homepage.cta.primary">开始构建</Translate>
                 <span className={styles.arrow} aria-hidden="true">
                   -&gt;
@@ -21,7 +21,7 @@ export default function HomepageCta(): ReactNode {
               </Link>
               <Link
                 className={styles.secondaryBtn}
-                href="https://github.com/xuyupeng07/fastgpt-solution-center">
+                href="https://fael3z0zfze.feishu.cn/share/base/form/shrcnmi17ze9c8dKMqZv4vmhtwe?prefill_source=solutions&hide_source=1">
                 <Translate id="homepage.cta.secondary">预约演示</Translate>
               </Link>
             </div>

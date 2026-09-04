@@ -14,9 +14,63 @@
   --ft-link: #475569; /* 链接 (ink-sub) */
   --ft-link-hover: #000000;
   --ft-meta: #292f38; /* 副标题 / 版权 (rgb 41,47,56) */
-  --ft-divider: #f1f5f9; /* 分隔线 / 二维码描边 */
+  --ft-divider: #e2e8f0; /* 分隔线 / 二维码描边 (页脚底色 slate-100 上需 slate-200 才可见) */
   color: var(--ft-default);
   font-family: 'Inter', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+/* 环境氛围光:复用 blurred-shape 系列 SVG,置于页脚背景之上、内容之下 */
+.bgShape {
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+  max-width: none;
+}
+
+.bgShapeBlue {
+  top: -14rem;
+  right: -14rem;
+  width: 42rem;
+  opacity: 0.2;
+}
+
+.bgShapeCyan {
+  bottom: -16rem;
+  left: -16rem;
+  width: 36rem;
+  opacity: 0.15;
+}
+
+/* 底部插图:footer-illustration,横贯页脚底部作收尾(地平线氛围光) */
+.footerIllustration {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  pointer-events: none;
+  z-index: 0;
+  max-width: none;
+  user-select: none;
+}
+
+/* 明暗主题切换背景图 */
+.bgLight {
+  display: block;
+}
+
+.bgDark {
+  display: none;
+}
+
+[data-theme='dark'] .bgLight {
+  display: none;
+}
+
+[data-theme='dark'] .bgDark {
+  display: block;
 }
 
 [data-theme='dark'] .footerRoot {
@@ -36,6 +90,8 @@
 
 /* 容器: max-width 1280, px-4 md:px-8 lg:px-0 */
 .inner {
+  position: relative;
+  z-index: 1;
   max-width: 1280px;
   width: 100%;
   margin: 0 auto;

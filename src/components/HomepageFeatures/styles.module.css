@@ -39,12 +39,6 @@
   max-width: none;
 }
 
-.bgShapeTop {
-  top: -5rem;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
 .bgShapeBottom {
   bottom: -20rem;
   left: 50%;

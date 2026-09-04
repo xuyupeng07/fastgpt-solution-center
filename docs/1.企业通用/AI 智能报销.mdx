@@ -4,11 +4,13 @@ tags: [报销]
 description: 面向企业费用报销的 AI 智能化方案，员工用自然语言描述报销、发一张发票即自动填单，覆盖企业微信、钉钉、飞书、泛微 OA 等入口，填单耗时下降约六成，财务从全量审核转为只审异常，预计 6-9 个月回本。
 ---
 
-# 1. AI 智能报销助手
+# AI 智能报销
 
-> 费用报销是每个组织都在跑的刚性流程，却长期困在「单据填不准、审核靠人肉、合规靠抽查」的泥潭里。
+> 一张 1500 块的酒店发票，从员工手里到钱回到卡上，要走一段不短的路：拍下来 → 逐字段手填一张单 → 财务逐单人工核对标准 → 审批 → 打款。每一步都在「靠人」——靠人填、靠人记、靠人查，卡点全在这条路上。
 > FastGPT 提供一套端到端的费用报销智能化方案——自然语言报销、发票识别、自动填单、全量规则校验、人工例外复核，覆盖企业微信、钉钉、飞书、泛微 OA 等入口，帮企业把员工从逐字段手工填单里解放出来，把财务团队从重复劳动里释放出来，把合规从「抽查碰运气」升级为「全量兜底」。
 > 某连锁零售企业财务中心上线后，单张报销单填单耗时从平均 3 分钟降到 1 分钟以内，财务审核从「逐单全审」转为「只审被标记的异常单」，异常拦截覆盖从人工抽查变为全量必查，预计 6-9 个月回本。
+
+![一张发票、一句话，报销从逐字段手填变成自动填单](./assets/ai-expense-cover_v3.jpg)
 
 > 【插图占位：报销助手对话界面】
 > 图片类型：界面截图
@@ -170,34 +172,29 @@ flowchart LR
 ```echarts
 {
   "title": {
-    "text": "落地前后数据对比",
-    "subtext": "填单耗时越低越好，识别率越高越好",
+    "text": "落地后财务审单工作量构成",
+    "subtext": "从逐单全审变为只审约 15% 的异常单",
     "left": "center",
     "textStyle": { "fontSize": 15 },
     "subtextStyle": { "fontSize": 12 }
   },
-  "legend": { "data": ["落地前", "落地后"], "bottom": 0 },
-  "tooltip": { "trigger": "axis", "axisPointer": { "type": "shadow" } },
-  "grid": [
-    { "left": "8%", "right": "6%", "top": "15%", "height": "25%", "containLabel": true },
-    { "left": "8%", "right": "6%", "top": "53%", "height": "25%", "containLabel": true }
-  ],
-  "xAxis": [
-    { "type": "value", "gridIndex": 0, "name": "分钟", "nameLocation": "middle", "nameGap": 25, "min": 0, "max": 4, "splitLine": { "show": false } },
-    { "type": "value", "gridIndex": 1, "name": "%", "nameLocation": "middle", "nameGap": 25, "min": 0, "max": 100, "splitLine": { "show": false } }
-  ],
-  "yAxis": [
-    { "type": "category", "gridIndex": 0, "data": ["填单耗时"], "axisTick": { "show": false }, "axisLine": { "show": false } },
-    { "type": "category", "gridIndex": 1, "data": ["发票要素识别率"], "axisTick": { "show": false }, "axisLine": { "show": false } }
-  ],
+  "tooltip": { "trigger": "item", "formatter": "{b}: {d}%" },
+  "legend": { "bottom": 0 },
   "series": [
-    { "name": "落地前", "type": "bar", "xAxisIndex": 0, "yAxisIndex": 0, "data": [3], "barWidth": 22, "itemStyle": { "color": "neutral" }, "label": { "show": true, "position": "right", "formatter": "3 分钟" } },
-    { "name": "落地后", "type": "bar", "xAxisIndex": 0, "yAxisIndex": 0, "data": [1], "barWidth": 22, "itemStyle": { "color": "primary" }, "label": { "show": true, "position": "right", "formatter": "1 分钟" } },
-    { "name": "落地前", "type": "bar", "xAxisIndex": 1, "yAxisIndex": 1, "data": [0], "barWidth": 22, "itemStyle": { "color": "neutral" }, "label": { "show": true, "position": "right", "formatter": "0%" } },
-    { "name": "落地后", "type": "bar", "xAxisIndex": 1, "yAxisIndex": 1, "data": [95], "barWidth": 22, "itemStyle": { "color": "primary" }, "label": { "show": true, "position": "right", "formatter": "95%" } }
+    {
+      "type": "pie", "radius": ["42%", "68%"], "center": ["50%", "48%"],
+      "label": { "formatter": "{b}\n{d}%" },
+      "data": [
+        { "value": 82, "name": "规则自动通过", "itemStyle": { "color": "primary" } },
+        { "value": 13, "name": "异常单人工复核", "itemStyle": { "color": "warning" } },
+        { "value": 5, "name": "制度/规则维护", "itemStyle": { "color": "neutral" } }
+      ]
+    }
   ]
 }
 ```
+
+这张环形图把「财务只审异常」这件事讲成一个可感的结果：约八成以上的报销单由规则全量校验后自动通过、不再占用财务逐单核对的人力，财务把精力收拢到约 15% 的异常单和规则维护上。这就是「审核效率」从逐单全审变为只审异常的可视化表达——不是甩一个「效率提升 80%」的空数字，而是把审单工作量到底怎么分配的构成画出来。
 
 ### 3.3 ROI 与回本周期
 
@@ -210,55 +207,7 @@ flowchart LR
 | 收益（钱） | 人力节省：财务审核从逐单全审转为只审异常、自动填单释放的员工与财务填单人力 |
 | 收益（折算） | 违规全检避免的罚款与审计风险、员工到账变快带来的体验与垫资减少 |
 
-> 某连锁零售企业财务中心脱敏参考：一次性投入主要为授权 + 实施 + 规则冷启动，月净收益来自财务审核人力释放与自动填单节省，**预计 6-9 个月回本**；未计入合规风险下降与员工体验提升，属保守估算。
-
-```echarts
-{
-  "title": {
-    "text": "回本周期示意",
-    "subtext": "示意曲线：一次性投入后逐月累计净收益，第 7-8 个月转正（对应正文 6-9 个月回本区间，非实际金额）",
-    "left": "center",
-    "textStyle": { "fontSize": 15 },
-    "subtextStyle": { "fontSize": 12 }
-  },
-  "tooltip": { "trigger": "axis", "axisPointer": { "type": "cross" } },
-  "grid": { "left": "8%", "right": "8%", "bottom": "18%", "top": "20%", "containLabel": true },
-  "xAxis": {
-    "type": "category",
-    "name": "上线后月份",
-    "nameLocation": "middle",
-    "nameGap": 30,
-    "data": ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"],
-    "boundaryGap": false
-  },
-  "yAxis": { "type": "value" },
-  "series": [
-    {
-      "name": "累计净现金流",
-      "type": "line",
-      "data": [-100, -87, -74, -61, -48, -35, -22, -9, 4, 17, 30, 43, 56],
-      "areaStyle": { "opacity": 0.12 },
-      "lineStyle": { "color": "primary", "width": 3 },
-      "itemStyle": { "color": "primary" },
-      "markLine": {
-        "symbol": "none",
-        "label": { "formatter": "盈亏平衡", "position": "insideStartTop" },
-        "lineStyle": { "type": "dashed", "color": "danger" },
-        "data": [{ "yAxis": 0 }]
-      },
-      "markPoint": {
-        "symbol": "pin",
-        "symbolSize": 48,
-        "itemStyle": { "color": "danger" },
-        "label": { "formatter": "回本点\n约第 8 个月" },
-        "data": [{ "coord": ["8", 4] }]
-      }
-    }
-  ]
-}
-```
-
-> 以上为脱敏行业案例的保守区间，不承诺具体数值；正式交付时以企业自身数据实测为准，按月复测，用数据说话。
+> 某连锁零售企业财务中心脱敏参考：一次性投入主要为授权 + 实施 + 规则冷启动，月净收益来自财务审核人力释放与自动填单节省，**预计 6-9 个月回本**；未计入合规风险下降与员工体验提升，属保守估算。回本周期用区间表达、不承诺具体数值；正式交付时以企业自身数据实测为准，按月复测，用数据说话。
 
 ---
 

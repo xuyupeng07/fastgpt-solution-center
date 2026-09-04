@@ -3,12 +3,45 @@
 .section {
   position: relative;
   padding: 4rem 0;
+  overflow: hidden;
   --accent: #6366f1;
   --accent-soft: #c7d2fe;
   --heading-gradient: linear-gradient(to right, #111827, #4f46e5, #111827);
   --title-color: #111827;
   --desc-color: #4b5563;
   --badge-text-gradient: linear-gradient(to right, #4f46e5, #6366f1);
+}
+
+/* 环境氛围光:紫色系光晕,置于内容之下 */
+.bgShape {
+  position: absolute;
+  pointer-events: none;
+  z-index: -1;
+  max-width: none;
+}
+
+.bgShapeViolet {
+  top: 4rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 64rem;
+  opacity: 0.25;
+}
+
+.bgLight {
+  display: block;
+}
+
+.bgDark {
+  display: none;
+}
+
+[data-theme='dark'] .bgLight {
+  display: none;
+}
+
+[data-theme='dark'] .bgDark {
+  display: block;
 }
 
 [data-theme='dark'] .section {

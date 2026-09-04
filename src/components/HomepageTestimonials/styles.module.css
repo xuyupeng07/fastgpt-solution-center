@@ -3,12 +3,45 @@
 .section {
   position: relative;
   padding: 4rem 0;
+  overflow: hidden;
   --accent: #6366f1;
   --accent-soft: #c7d2fe;
   --heading-gradient: linear-gradient(to right, #111827, #4f46e5, #111827);
   --card-surface: #ffffff;
   --quote-color: #4b5563;
   --filter-muted: #4b5563;
+}
+
+/* 环境氛围光:紫色系光晕,置于内容之下 */
+.bgShape {
+  position: absolute;
+  pointer-events: none;
+  z-index: -1;
+  max-width: none;
+}
+
+.bgShapeViolet {
+  bottom: -8rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 56rem;
+  opacity: 0.22;
+}
+
+.bgLight {
+  display: block;
+}
+
+.bgDark {
+  display: none;
+}
+
+[data-theme='dark'] .bgLight {
+  display: none;
+}
+
+[data-theme='dark'] .bgDark {
+  display: block;
 }
 
 [data-theme='dark'] .section {
@@ -180,6 +213,12 @@
     rgba(99, 102, 241, 0.35),
     rgba(99, 102, 241, 0.15)
   );
+  transition: opacity 0.3s ease;
+}
+
+/* 非当前分类的卡片仅变暗、不隐藏(复刻原模板 opacity-30 的明暗筛选) */
+.cardDimmed {
+  opacity: 0.3;
 }
 
 .cardInner {
@@ -192,25 +231,35 @@
 .client {
   display: flex;
   align-items: center;
-  gap: 0.625rem;
   margin-bottom: 1rem;
+  min-height: 2rem;
 }
 
-.clientMark {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 2rem;
+.clientLogoLt,
+.clientLogoDk {
   height: 2rem;
-  border-radius: 0.5rem;
-  color: #fff;
-  flex-shrink: 0;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
 }
 
-.clientName {
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: var(--ifm-color-emphasis-900);
+.clientLogoDk {
+  display: none;
+}
+
+/* 无暗色版本时:暗色模式将 logo 反转为白色剪影,保证在深色卡片上可见 */
+[data-theme='dark'] .clientLogoLt {
+  filter: brightness(0) invert(1);
+}
+
+/* 有暗色版本时:暗色模式切换为暗色版,并保留品牌配色 */
+[data-theme='dark'] .clientHasDark .clientLogoLt {
+  display: none;
+  filter: none;
+}
+
+[data-theme='dark'] .clientHasDark .clientLogoDk {
+  display: block;
 }
 
 .quote {
@@ -235,17 +284,11 @@
 }
 
 .avatar {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 2.25rem;
-  height: 2.25rem;
+  width: 2.5rem;
+  height: 2.5rem;
   border-radius: 9999px;
   flex-shrink: 0;
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: #fff;
-  background: linear-gradient(to bottom right, #6366f1, #8b5cf6);
+  object-fit: cover;
 }
 
 .authorMeta {

@@ -7,7 +7,6 @@ import Layout from '@theme/Layout';
 import HomepageFeatures from '@site/src/components/HomepageFeatures';
 import HomepageHighlights from '@site/src/components/HomepageHighlights';
 import HomepageTestimonials from '@site/src/components/HomepageTestimonials';
-import HomepageCta from '@site/src/components/HomepageCta';
 import Heading from '@theme/Heading';
 
 import styles from './index.module.css';
@@ -16,18 +15,13 @@ function HomepageHeader() {
   const heroBgs = [
     {
       position: styles.heroBgTop,
-      light: useBaseUrl('img/page-illustration-light.svg'),
-      dark: useBaseUrl('img/page-illustration.svg'),
-    },
-    {
-      position: styles.heroBgGray,
-      light: useBaseUrl('img/blurred-shape-gray-light.svg'),
-      dark: useBaseUrl('img/blurred-shape-gray.svg'),
+      light: useBaseUrl('img/illustrations/page-illustration-light.svg'),
+      dark: useBaseUrl('img/illustrations/page-illustration.svg'),
     },
     {
       position: styles.heroBgIndigo,
-      light: useBaseUrl('img/blurred-shape-light.svg'),
-      dark: useBaseUrl('img/blurred-shape.svg'),
+      light: useBaseUrl('img/shapes/blurred-shape-light.svg'),
+      dark: useBaseUrl('img/shapes/blurred-shape.svg'),
     },
   ];
 
@@ -61,7 +55,7 @@ function HomepageHeader() {
         <div className={styles.buttons}>
           <Link
             className="button button--secondary button--lg"
-            to="/docs/企业通用/AI 智能报销助手">
+            to="/docs/企业通用/AI 智能报销">
             <Translate id="homepage.hero.cta">
               {'浏览解决方案'}
             </Translate>
@@ -84,7 +78,6 @@ export default function Home(): ReactNode {
         <HomepageFeatures />
         <HomepageHighlights />
         <HomepageTestimonials />
-        <HomepageCta />
       </main>
     </Layout>
   );
