@@ -7,7 +7,7 @@
 FastGPT **解决方案中心**官网（Docusaurus，部署到 GitHub Pages）。核心产出是一批**公开通用的解决方案文章**，用来吸引潜在企业客户、推动预约 POC——**不是**对某个具体客户的售前定制方案。
 
 - 站点：https://xuyupeng07.github.io/fastgpt-solution-center/ （标题「FastGPT 解决方案中心」）
-- i18n：zh-Hans（默认）/ en / fr；Mermaid 已启用（`markdown.mermaid: true`）
+- i18n：zh-Hans（默认）/ en；Mermaid 已启用（`markdown.mermaid: true`）
 
 ## 二、核心定位：公开通用，不是私人定制
 
@@ -139,7 +139,7 @@ Docusaurus 是 React 驱动的**静态站点生成器（SSG）**：你写 Markdo
 | `src/css/custom.css` | 全局样式覆盖（Infima CSS 变量） |
 | `src/theme/` | swizzle（改写）过的主题组件 |
 | `static/` | 静态资源，原样拷到站点根 URL（`/img/foo.png`） |
-| `i18n/` | 多语言翻译（en / fr） |
+| `i18n/` | 多语言翻译（en） |
 | `build/` | 构建产物（`npm run build` 生成，勿手改） |
 
 ### 8.3 常用命令
@@ -236,7 +236,7 @@ npm run typecheck    # tsc 类型检查
 
 - `url` / `baseUrl` / `organizationName` / `projectName`：GitHub Pages 部署，勿乱改。
 - `onBrokenLinks: 'throw'`：任何失效内部链接都会让 `npm run build` 报错（改链接时必须保证目标存在）。
-- `i18n`：`defaultLocale: 'zh-Hans'` + `locales: ['zh-Hans','en','fr']`。
+- `i18n`：`defaultLocale: 'zh-Hans'` + `locales: ['zh-Hans','en']`。
 - `themeConfig`：`navbar`（导航）、`footer`（页脚）、`colorMode`、`prism`（代码高亮主题）。
 - `presets` / `themes` / `plugins`：classic 预设自带 docs/blog/theme；本项目额外挂了 mermaid、live-codeblock、pagefind。
 
@@ -281,5 +281,5 @@ npm run typecheck    # tsc 类型检查
 - **文档正文**：`.mdx`，frontmatter 带 `sidebar_position` + `name`（≤10 字）+ `description`（≤120 字，优先百分比）。
 - **图表**：Mermaid 画业务流程；数据对比/趋势/ROI 用 ` ```echarts ` 代码块（`src/components/ECharts`），配色用语义色 token。
 - **配图占位**：`【插图占位：…】`，交代「放什么图 + 怎么截图/制图」。
-- **文档入口**：`docs/intro.mdx`（欢迎/介绍，`sidebar_position: 1`）是文档落地页；`docs/AI 智能报销助手.mdx`（路由 `/docs/AI 智能报销助手`）是具体解决方案。页脚「教程」指向 intro，首页/CTA 指向具体方案（新增文档后记得同步这些入口）。
+- **文档入口**：`docs/intro.mdx`（欢迎/介绍，`sidebar_position: 1`）是文档落地页；具体解决方案按场景放分类目录（如 `docs/企业通用/`，对应侧边栏「企业通用」分类，路由 `/docs/企业通用/…`）。页脚「解决方案」指向 intro，首页/CTA 指向具体方案（新增文档后记得同步这些入口）。
 - **博客作者**：`blog/authors.yml` 的 `xuyupeng`；**博客标签**：`blog/tags.yml`；**文档标签**：`docs/tags.yml`。frontmatter 里的 `tags: [key]` 引用的是 YAML 里的 **key**（不是 label），未登记会变成 inline 标签并触发 `onInlineTags: 'warn'`。

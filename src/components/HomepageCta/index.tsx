@@ -13,7 +13,7 @@ export default function HomepageCta(): ReactNode {
               <Translate id="homepage.cta.title">开始构建你的 AI 应用</Translate>
             </h2>
             <div className={styles.buttons}>
-              <Link className={styles.primaryBtn} to="/docs/AI 智能报销助手">
+              <Link className={styles.primaryBtn} to="/docs/企业通用/AI 智能报销助手">
                 <Translate id="homepage.cta.primary">开始构建</Translate>
                 <span className={styles.arrow} aria-hidden="true">
                   -&gt;

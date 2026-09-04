@@ -1,40 +1,37 @@
-import {useEffect, useRef, useState} from 'react';
+import {useLayoutEffect, useRef} from 'react';
 
 /**
- * 复刻 open-react-template 的 useMasonry:让 CSS Grid 中高度不一的卡片
- * 自动向上补齐空隙,形成瀑布流(masonry)效果。适配 Docusaurus 的 TS 严格模式。
+ * 让 CSS Grid 中高度不一的卡片自动向上补齐空隙,形成瀑布流(masonry)效果。
+ * 当 `dep` 变化(例如筛选分类切换导致卡片增减)时,会重新收集子元素并重新计算。
+ * 使用 useLayoutEffect 在绘制前完成布局,避免首屏出现未补齐的闪烁。
  */
-const useMasonry = () => {
-  const masonryContainer = useRef<HTMLDivElement | null>(null);
-  const [items, setItems] = useState<Element[]>([]);
+const useMasonry = (dep?: unknown) => {
+  const containerRef = useRef<HTMLDivElement | null>(null);
 
-  // 挂载后收集网格内的直接子元素(每张卡片)
-  useEffect(() => {
-    if (masonryContainer.current) {
-      setItems(Array.from(masonryContainer.current.children));
+  useLayoutEffect(() => {
+    const container = containerRef.current;
+    if (!container) {
+      return;
     }
-  }, []);
 
-  useEffect(() => {
-    const handleMasonry = () => {
+    const recompute = () => {
+      const items = Array.from(container.children).filter(
+        (el): el is HTMLElement => el instanceof HTMLElement,
+      );
       if (items.length < 1) {
         return;
       }
+
       let gapSize = 0;
-      if (masonryContainer.current) {
-        const gap = window
-          .getComputedStyle(masonryContainer.current)
-          .getPropertyValue('row-gap');
-        gapSize = parseInt(gap, 10) || 0;
-      }
+      const gap = window
+        .getComputedStyle(container)
+        .getPropertyValue('row-gap');
+      gapSize = parseInt(gap, 10) || 0;
 
       items.forEach((el) => {
-        if (!(el instanceof HTMLElement)) {
-          return;
-        }
+        el.style.marginTop = '0';
         let previous = el.previousElementSibling;
         while (previous) {
-          el.style.marginTop = '0';
           if (
             previous instanceof HTMLElement &&
             previous.getBoundingClientRect().left ===
@@ -51,14 +48,14 @@ const useMasonry = () => {
       });
     };
 
-    handleMasonry();
-    window.addEventListener('resize', handleMasonry);
+    recompute();
+    window.addEventListener('resize', recompute);
     return () => {
-      window.removeEventListener('resize', handleMasonry);
+      window.removeEventListener('resize', recompute);
     };
-  }, [items]);
+  }, [dep]);
 
-  return masonryContainer;
+  return containerRef;
 };
 
 export default useMasonry;

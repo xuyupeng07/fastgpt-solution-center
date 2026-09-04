@@ -5,3 +5,7 @@
 报销:
   label: 报销
   description: 费用报销场景的 AI 解决方案
+
+IM连接器:
+  label: IM 连接器
+  description: 将 FastGPT 接入钉钉、飞书、企业微信等办公 IM 的桥接服务

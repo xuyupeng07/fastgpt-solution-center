@@ -61,7 +61,7 @@ function HomepageHeader() {
         <div className={styles.buttons}>
           <Link
             className="button button--secondary button--lg"
-            to="/docs/AI 智能报销助手">
+            to="/docs/企业通用/AI 智能报销助手">
             <Translate id="homepage.hero.cta">
               {'浏览解决方案'}
             </Translate>

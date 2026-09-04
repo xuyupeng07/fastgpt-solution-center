@@ -37,7 +37,7 @@ const config: Config = {
   // may want to replace "en" with "zh-Hans".
   i18n: {
     defaultLocale: 'zh-Hans',
-    locales: ['zh-Hans', 'en', 'fr'],
+    locales: ['zh-Hans', 'en'],
   },
 
   themes: [
@@ -64,7 +64,7 @@ const config: Config = {
         blog: {
           showReadingTime: true,
           // 博客左侧“最新文章”标题的默认(zh-Hans)文案;
-          // en/fr 通过各自 i18n/.../docusaurus-plugin-content-blog/options.json 覆盖.
+          // en 通过 i18n/.../docusaurus-plugin-content-blog/options.json 覆盖.
           blogSidebarTitle: '最新文章',
           feedOptions: {
             type: ['rss', 'atom'],
@@ -112,7 +112,7 @@ const config: Config = {
           type: 'docSidebar',
           sidebarId: 'tutorialSidebar',
           position: 'left',
-          label: '教程',
+          label: '解决方案',
         },
         {to: '/blog', label: '博客', position: 'left'},
         {
@@ -129,7 +129,7 @@ const config: Config = {
           title: '文档',
           items: [
             {
-              label: '教程',
+              label: '解决方案',
               to: '/docs/intro',
             },
           ],

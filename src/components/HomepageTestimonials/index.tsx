@@ -1,4 +1,4 @@
-import {useState, type ReactNode} from 'react';
+import {useLayoutEffect, useRef, useState, type ReactNode} from 'react';
 import Translate from '@docusaurus/Translate';
 import clsx from 'clsx';
 import useMasonry from '@site/src/utils/useMasonry';
@@ -205,11 +205,11 @@ const TESTIMONIALS: Testimonial[] = [
   },
 ];
 
-function TestimonialCard({item, active}: {item: Testimonial; active: boolean}) {
+function TestimonialCard({item}: {item: Testimonial}) {
   const initial = item.name.charAt(0);
   const logo = CLIENT_LOGOS[item.logoKey];
   return (
-    <article className={clsx(styles.card, !active && styles.cardDimmed)}>
+    <article className={styles.card}>
       <div className={styles.cardInner}>
         <div className={styles.client}>
           <span className={styles.clientMark} style={{backgroundColor: logo.color}}>
@@ -238,7 +238,59 @@ function TestimonialCard({item, active}: {item: Testimonial; active: boolean}) {
 
 export default function HomepageTestimonials(): ReactNode {
   const [category, setCategory] = useState<Category>('all');
-  const masonryContainer = useMasonry();
+  const prevIdxRef = useRef(0);
+  const animsRef = useRef<Animation[]>([]);
+
+  // 1) 切换时先取消仍在进行的入场动画,让卡片回到静止位置,确保后续测量基于静止布局。
+  useLayoutEffect(() => {
+    animsRef.current.forEach((anim) => anim.cancel());
+    animsRef.current = [];
+  }, [category]);
+
+  // 2) 重新计算瀑布流(此时卡片已回到静止布局)。
+  const gridRef = useMasonry(category);
+
+  // 3) 按分类前后顺序决定滑动方向,再让新卡片沿对应方向滑入 + 淡入,并错峰执行。
+  useLayoutEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      return;
+    }
+
+    const container = gridRef.current;
+    if (!container) {
+      return;
+    }
+
+    const idx = CATEGORIES.findIndex((cat) => cat.key === category);
+    const dir = idx >= prevIdxRef.current ? 1 : -1;
+    prevIdxRef.current = idx;
+
+    const cards = Array.from(container.children).filter(
+      (el): el is HTMLElement => el instanceof HTMLElement,
+    );
+
+    cards.forEach((el, i) => {
+      const offset = 32 * dir;
+      const anim = el.animate(
+        [
+          {transform: `translateX(${offset}px)`, opacity: 0},
+          {transform: 'translateX(0)', opacity: 1},
+        ],
+        {
+          duration: 420,
+          delay: i * 60,
+          easing: 'cubic-bezier(0.22, 1, 0.36, 1)',
+          fill: 'backwards',
+        },
+      );
+      animsRef.current.push(anim);
+    });
+  }, [category, gridRef]);
+
+  const filtered =
+    category === 'all'
+      ? TESTIMONIALS
+      : TESTIMONIALS.filter((item) => item.category === category);
 
   return (
     <section className={styles.section}>
@@ -278,13 +330,9 @@ export default function HomepageTestimonials(): ReactNode {
             </div>
           </div>
 
-          <div className={styles.grid} ref={masonryContainer}>
-            {TESTIMONIALS.map((item, idx) => (
-              <TestimonialCard
-                key={idx}
-                item={item}
-                active={category === 'all' || item.category === category}
-              />
+          <div className={styles.grid} ref={gridRef}>
+            {filtered.map((item) => (
+              <TestimonialCard key={item.quoteId} item={item} />
             ))}
           </div>
         </div>
