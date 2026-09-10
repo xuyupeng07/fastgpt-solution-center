@@ -1,0 +1,186 @@
+.wrapper {
+  position: relative;
+  isolation: isolate;
+  width: min(100%, 68rem);
+  margin: 0 auto;
+}
+
+.glow {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  z-index: -1;
+  width: 72.8125rem;
+  max-width: 100%;
+  margin-left: -7rem;
+  pointer-events: none;
+  transform: translate(-50%, 50%);
+}
+
+@media screen and (min-width: 768px) {
+  .glow {
+    max-width: none;
+  }
+}
+
+.preview {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  border-radius: 1rem;
+  background: linear-gradient(to bottom right, #111827, rgba(99, 102, 241, 0.2), #111827);
+  cursor: pointer;
+}
+
+.preview:focus-visible {
+  outline: 3px solid rgba(99, 102, 241, 0.65);
+  outline-offset: 4px;
+}
+
+.poster {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.posterOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(3, 7, 18, 0.1);
+  pointer-events: none;
+  transition: background-color 0.2s ease;
+}
+
+[data-theme='dark'] .posterOverlay {
+  background: rgba(3, 7, 18, 0.45);
+}
+
+.playBadge {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  padding: 0.625rem;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+}
+
+.playBadge::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background: #030712;
+  transition: transform 0.3s ease;
+}
+
+.preview:hover .playBadge::before {
+  transform: scale(1.1);
+}
+
+.playContent {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.playContent svg {
+  flex: 0 0 auto;
+}
+
+.playText {
+  color: #d1d5db;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.25;
+  white-space: nowrap;
+}
+
+.separator {
+  color: #4b5563;
+}
+
+.dialog {
+  width: min(92vw, 75rem);
+  max-width: none;
+  padding: 0;
+  overflow: visible;
+  border: 0;
+  background: transparent;
+}
+
+.dialog::backdrop {
+  background: rgba(3, 7, 18, 0.82);
+  backdrop-filter: blur(8px);
+}
+
+.playerShell {
+  position: relative;
+  overflow: visible;
+  border-radius: 0.75rem;
+  background: #000;
+  box-shadow: 0 2rem 6rem rgba(0, 0, 0, 0.55);
+}
+
+.video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: inherit;
+  background: #000;
+}
+
+.closeButton {
+  position: absolute;
+  top: -2.75rem;
+  right: 0;
+  display: grid;
+  width: 2.25rem;
+  height: 2.25rem;
+  padding: 0;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  background: rgba(3, 7, 18, 0.75);
+  color: #fff;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.closeButton:hover {
+  background: rgba(30, 41, 59, 0.95);
+}
+
+.closeButton:focus-visible {
+  outline: 3px solid #818cf8;
+  outline-offset: 2px;
+}
+
+@media screen and (max-width: 996px) {
+  .wrapper {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .playBadge {
+    padding: 0.5rem;
+  }
+
+  .playText {
+    font-size: 0.75rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .playBadge::before {
+    transition: none;
+  }
+}

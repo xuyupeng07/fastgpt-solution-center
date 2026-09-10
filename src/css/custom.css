@@ -97,9 +97,10 @@
   background: #334155;
 }
 
-/* 导航栏右侧 CTA 按钮：商务咨询（描边）、立即开始（紫色渐变），样式与首页 CTA 区块按钮一致 */
+/* 导航栏右侧 CTA 按钮：立即开始（次要）、商务咨询（紫色渐变） */
 /* Docusaurus 把明暗切换与搜索框硬编码在右侧配置项之后，这里用 flex order 把两个按钮顶到最右端 */
-.navbar__items--right .nav-cta {
+.navbar__items--right .nav-cta,
+.navbar__items--right .nav-start {
   order: 20;
 }
 
@@ -118,23 +119,18 @@
   display: none;
 }
 
-/* 商务咨询：描边按钮 */
-.navbar .nav-cta-outline {
+/* 立即开始：直接使用 Hero“浏览解决方案”的 button 组件类 */
+.navbar .nav-start {
   margin-left: 1rem;
   margin-right: 1rem;
-  border: 1px solid var(--ifm-color-emphasis-300);
-  background: var(--ifm-background-surface-color);
-  color: var(--ifm-color-emphasis-800);
-  transition: filter 0.2s ease, transform 0.2s ease;
+  font-size: inherit;
 }
 
-.navbar .nav-cta-outline:hover {
-  color: var(--ifm-color-emphasis-900);
-  filter: brightness(1.06);
-  transform: translateY(-1px);
+.navbar .nav-start svg {
+  display: none;
 }
 
-/* 立即开始：紫色渐变按钮 */
+/* 商务咨询：紫色渐变主按钮 */
 .navbar .nav-cta-primary {
   background: linear-gradient(to top, #4f46e5, #6366f1);
   background-size: 100% 100%;

@@ -14,6 +14,12 @@ const config: Config = {
     v4: true, // Improve compatibility with the upcoming Docusaurus v4
   },
 
+  // 主题偏好必须在所有语言之间共享，避免切换 locale 时明暗模式重置。
+  storage: {
+    type: 'localStorage',
+    namespace: false,
+  },
+
   // Set the production url of your site here
   url: 'https://xuyupeng07.github.io',
   // Set the /<baseUrl>/ pathname under which your site is served
@@ -122,14 +128,14 @@ const config: Config = {
           position: 'right',
         },
         {
-          href: 'https://fael3z0zfze.feishu.cn/share/base/form/shrcnmi17ze9c8dKMqZv4vmhtwe?prefill_source=solutions&hide_source=1',
-          label: '商务咨询',
-          position: 'right',
-          className: 'nav-cta nav-cta-outline',
-        },
-        {
           href: 'https://fastgpt.cn/',
           label: '立即开始',
+          position: 'right',
+          className: 'nav-start button button--secondary',
+        },
+        {
+          href: 'https://fael3z0zfze.feishu.cn/share/base/form/shrcnmi17ze9c8dKMqZv4vmhtwe?prefill_source=solutions&hide_source=1',
+          label: '商务咨询',
           position: 'right',
           className: 'nav-cta nav-cta-primary',
         },

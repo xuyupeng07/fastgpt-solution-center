@@ -18,6 +18,10 @@ IM连接器:
   label: 翻译
   description: 翻译场景的 AI 解决方案
 
+会议纪要:
+  label: 会议纪要
+  description: 会议纪要场景的 AI 解决方案
+
 出题:
   label: 出题
   description: 教育行业出题场景的 AI 解决方案
